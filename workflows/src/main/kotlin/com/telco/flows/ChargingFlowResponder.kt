@@ -6,8 +6,8 @@ import net.corda.core.flows.FlowSession
 import net.corda.core.flows.InitiatedBy
 
 
-@InitiatedBy(FiberConnectionServiceFlow::class)
-class FiberConnectionServiceFlowResponder(val counterpartySession: FlowSession) : FlowLogic<Unit>() {
+@InitiatedBy(ChargingFlow::class)
+class ChargingFlowResponder(val counterpartySession: FlowSession) : FlowLogic<Unit>() {
 
     @Suspendable
     override fun call() {
