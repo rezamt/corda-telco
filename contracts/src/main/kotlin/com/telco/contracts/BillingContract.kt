@@ -38,8 +38,8 @@ class BillingContract : Contract {
     // Commands signed by oracles must contain the facts the oracle is attesting to.
     interface Commands : CommandData {
         class IssueBill(val subscriber: Party, val serviceProvider: Party, val customerID: String, var billingAccountID: String, var serviceType: String, var issueDate: LocalDate, var dueDate: LocalDate, var amount: Double, val status: String) : Commands
-        class PayBill(val subscriber: Party, val serviceProvider: Party, val amount: Double) : Commands
-        class OverDueBill(val subscriber: Party, val serviceProvider: Party) : Commands
+        class PayBill(val subscriber: Party, val serviceProvider: Party, val customerID: String, var billingAccountID: String, var serviceType: String,  var dueDate: LocalDate, val amount: Double) : Commands
+        class OverDueBill(val subscriber: Party, val serviceProvider: Party, val customerID: String, var billingAccountID: String, var serviceType: String,  var dueDate: LocalDate, val amount: Double) : Commands
     }
 
     /**

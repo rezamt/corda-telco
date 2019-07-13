@@ -77,6 +77,7 @@ dependencies {
     // CorDapp dependencies.
     cordapp project(":workflows")
     cordapp project(":contracts")
+    cordapp project(":services")
 
     cordaCompile "org.apache.logging.log4j:log4j-slf4j-impl:${log4j_version}"
     cordaCompile "org.apache.logging.log4j:log4j-web:${log4j_version}"
@@ -85,7 +86,7 @@ dependencies {
 
 cordapp {
     info {
-        name "CorDapp Template"
+        name "CorDapp Telco"
         vendor "Corda Open Source"
         targetPlatformVersion corda_platform_version.toInteger()
         minimumPlatformVersion corda_platform_version.toInteger()
@@ -99,6 +100,7 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         }
         cordapp project(':contracts')
         cordapp project(':workflows')
+        cordapp project(':services')
     }
     node {
         name "O=Notary,L=Sydney,C=AU"
