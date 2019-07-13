@@ -2,11 +2,13 @@ package com.telco.contracts
 
 import net.corda.core.contracts.CommandData
 import net.corda.core.contracts.Contract
+import net.corda.core.contracts.LegalProseReference
 import net.corda.core.transactions.LedgerTransaction
 
 // ************
 // * Contract *
 // ************
+@LegalProseReference("https://nowhere/nolegal")
 class TemplateContract : Contract {
     companion object {
         // Used to identify our contract when building a transaction.

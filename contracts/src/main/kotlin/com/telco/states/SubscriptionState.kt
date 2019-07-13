@@ -37,7 +37,7 @@ data class SubscriptionState(
         override val linearId: UniqueIdentifier = UniqueIdentifier()) : LinearState, QueryableState {
 
 
-    override val participants: List<AbstractParty> get() = listOf(serviceProvider, subscriber)
+    override val participants: List<Party> get() = listOf(serviceProvider, subscriber)
 
     override fun generateMappedObject(schema: MappedSchema): PersistentState {
         return when (schema) {

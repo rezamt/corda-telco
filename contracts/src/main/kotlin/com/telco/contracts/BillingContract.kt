@@ -1,15 +1,13 @@
 package com.telco.contracts
 
-import net.corda.core.contracts.CommandData
-import net.corda.core.contracts.Contract
-import net.corda.core.contracts.requireSingleCommand
-import net.corda.core.contracts.requireThat
 import net.corda.core.identity.Party
 import net.corda.core.transactions.LedgerTransaction
 
 import java.time.LocalDate
 
 import com.telco.states.InvoiceState
+import net.corda.core.contracts.*
+
 /**
  * A implementation of a basic smart contract in Corda.
  *
@@ -22,6 +20,7 @@ import com.telco.states.InvoiceState
  *
  * All contracts must sub-class the [Contract] interface.
  */
+@LegalProseReference("https://nowhere/nolegal")
 class BillingContract : Contract {
 
     companion object {
