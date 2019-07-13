@@ -21,6 +21,7 @@ class SubscriptionContract : Contract {
     interface Commands : CommandData {
         class Subscribe(val subscriber: Party, val serviceProvider: Party) : Commands
         class UnSubscribe(val subscriber: Party, val serviceProvider: Party) : Commands
+        class Approved(val subscriber: Party, val serviceProvider: Party, val accountStatus: String, val serviceStatus: String) : Commands
     }
 
     /**
@@ -35,6 +36,11 @@ class SubscriptionContract : Contract {
                 }
             }
             is Commands.UnSubscribe -> {
+                requireThat {
+                }
+            }
+
+            is Commands.Approved -> {
                 requireThat {
                 }
             }

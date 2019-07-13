@@ -12,7 +12,7 @@ class SubscriptionFlowResponder(val counterpartySession: FlowSession) : FlowLogi
 
     @Suspendable
     override fun call(): SignedTransaction {
-        val signedTransactionFlow = object : SignTransactionFlow(counterpartySession) {
+            val signedTransactionFlow = object : SignTransactionFlow(counterpartySession) {
             override fun checkTransaction(stx: SignedTransaction) = requireThat {
                 val output = stx.tx.outputs.single().data
                 "This must be an Subscription transaction" using (output is SubscriptionState)

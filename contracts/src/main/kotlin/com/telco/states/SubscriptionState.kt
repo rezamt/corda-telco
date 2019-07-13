@@ -31,6 +31,13 @@ data class SubscriptionState(
         val subscriptionStartDate: LocalDate,
         val subscriptionEndDate: LocalDate,
 
+
+        val serviceStatus: String,
+        val accountStatus: String,
+
+        val billingCycle: String,
+        val billDeliveryMethod: String,
+
         val serviceProvider: Party, // Telstra, Optus, NBN = CName
         val subscriber: Party,      // Subscriber@ Telstra, Optus, NBN [can be an individual or wholesaler]
 
@@ -56,6 +63,12 @@ data class SubscriptionState(
 
                     this.subscriptionStartDate,
                     this.subscriptionEndDate,
+
+                    this.serviceStatus,
+                    this.accountStatus,
+
+                    this.billingCycle,
+                    this.billDeliveryMethod,
 
                     this.linearId.id
             )

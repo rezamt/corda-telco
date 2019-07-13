@@ -37,6 +37,10 @@ class SubscriptionFlow(
         private val billingAccountID: String,
 //        private val subscriptionStartDate: LocalDate,
 //        private val subscriptionEndDate: LocalDate,
+        private val startDate: String,
+        private val endDate: String,
+        private val billingCycle: String,
+        private val billDeliveryMethod: String,
         private val serviceProvider: Party // IRCell, TurkCell = CName
 ) : FlowLogic<SignedTransaction>() {
 
@@ -82,8 +86,8 @@ class SubscriptionFlow(
         progressTracker.currentStep = START_SUBSCRIPTION
 
         // "Thu Jul 11 2019"
-        val subscriptionStartDate = LocalDate.parse("Thu Jul 4 2019", DateTimeFormatter.ofPattern("EEE MMM d yyyy"))
-        val subscriptionEndDate = LocalDate.parse("Thu Jul 4 2019", DateTimeFormatter.ofPattern("EEE MMM d yyyy"))
+        val subscriptionStartDate = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("EEE MMM d yyyy"))
+        val subscriptionEndDate = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("EEE MMM d yyyy"))
 
 
         // Stage 1.
@@ -104,12 +108,16 @@ class SubscriptionFlow(
                 billingAccountID,
                 subscriptionStartDate,
                 subscriptionEndDate,
+                "PendingApproval",
+                "InActive",
+                billingCycle,
+                billDeliveryMethod,
                 serviceProvider,
                 ourIdentity
         );
 
 
-        // val commandSigners = subscriptionState.participants.plus(serviceProvider).map { it.owningKey }
+        //val commandSigners = subscriptionState.participants.plus(serviceProvider).map { it.owningKey }
         val commandSigners = subscriptionState.participants.map { it.owningKey }
         val txCommand = Command(SubscriptionContract.Commands.Subscribe(ourIdentity, serviceProvider), commandSigners)
         val txBuilder = TransactionBuilder(notary)
