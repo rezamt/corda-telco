@@ -103,7 +103,7 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         cordapp project(':services')
     }
     node {
-        name "O=Notary,L=Sydney,C=AU"
+        name "O=Notary,OU=TelcoChain,L=Sydney,C=AU"
         notary = [validating : false]
         p2pPort 10002
         rpcSettings {
@@ -112,7 +112,7 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         }
     }
     node {
-        name "O=Oracle,L=Sydney,C=AU"
+        name "O=Oracle,OU=TelcoChain,L=Sydney,C=AU"
         p2pPort 10005
         rpcSettings {
             address("localhost:10006")
@@ -121,7 +121,7 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         rpcUsers = [[ user: "user1", "password": "test", "permissions": ["ALL"]]]
     }
     node {
-        name "O=Subscriber,L=Sydney,C=AU"
+        name "O=Subscriber,OU=ServiceSubscriber,L=Sydney,C=AU"
         p2pPort 10008
         rpcSettings {
             address("localhost:10009")
@@ -131,7 +131,7 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
     }
     
     node {
-        name "O=IranCell,L=Tehran,C=IR"
+        name "O=IranCell,OU=ServiceProviders,L=Tehran,C=IR"
         p2pPort 10011
         rpcSettings {
             address("localhost:10012")
@@ -141,7 +141,7 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
     }
 
     node {
-        name "O=TurkCell,L=Istanbul,C=TR"
+        name "O=TurkCell,OU=ServiceProviders,L=Istanbul,C=TR"
         p2pPort 10014
         rpcSettings {
             address("localhost:10015")
