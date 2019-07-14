@@ -173,6 +173,7 @@ class SubscriptionContract : Contract {
             val activatedCommand = command.value as Commands.Activated
             "Only Member of Service Providers are allowed to Subscribe service consumers" using (activatedCommand.serviceProvider.name.organisationUnit?.compareTo("ServiceProviders") == 0)
             "Only Member of Service Subscribers are allowed to Subscribe service consumers" using (activatedCommand.subscriber.name.organisationUnit?.compareTo("ServiceSubscriber") == 0)
+
         }
     }
 
