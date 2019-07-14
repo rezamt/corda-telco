@@ -1,27 +1,29 @@
 package com.telco.contracts
 
-import net.corda.core.contracts.CommandData
-import net.corda.core.contracts.Contract
-import net.corda.core.contracts.requireSingleCommand
-import net.corda.core.contracts.requireThat
 import net.corda.core.identity.Party
 import net.corda.core.transactions.LedgerTransaction
 
 import java.time.LocalDate
 
 import com.telco.states.InvoiceState
+import net.corda.core.contracts.*
+
 /**
- * A implementation of a basic smart contract in Corda.
- *
- * This contract enforces rules regarding the creation of a valid [InvoiceState], which in turn encapsulates an [InvoiceState].
+ *  This contract enforces rules regarding the creation of a valid [InvoiceState], which in turn encapsulates an [InvoiceState].
  *
  * For a new [InvoiceState] to be issued onto the ledger, a transaction is required which takes:
- * - Zero input states.
- * - One output state: the new [InvoiceState].
- * - An Create() command with the public keys of both the lender and the borrower.
+ *
+ * An IssueBill() command with the public keys of both the subscriber and the service provider.
+ * Zero input states.
+ * One output state: the new [InvoiceState].
+ *
+ *
  *
  * All contracts must sub-class the [Contract] interface.
  */
+
+
+@LegalProseReference("https://nowhere/nolegal")
 class BillingContract : Contract {
 
     companion object {
@@ -38,8 +40,8 @@ class BillingContract : Contract {
     // Commands signed by oracles must contain the facts the oracle is attesting to.
     interface Commands : CommandData {
         class IssueBill(val subscriber: Party, val serviceProvider: Party, val customerID: String, var billingAccountID: String, var serviceType: String, var issueDate: LocalDate, var dueDate: LocalDate, var amount: Double, val status: String) : Commands
-        class PayBill(val subscriber: Party, val serviceProvider: Party, val amount: Double) : Commands
-        class OverDueBill(val subscriber: Party, val serviceProvider: Party) : Commands
+        class PayBill(val subscriber: Party, val serviceProvider: Party, val customerID: String, var billingAccountID: String, var serviceType: String,  var dueDate: LocalDate, val amount: Double) : Commands
+        class OverDueBill(val subscriber: Party, val serviceProvider: Party, val customerID: String, var billingAccountID: String, var serviceType: String,  var dueDate: LocalDate, val amount: Double) : Commands
     }
 
     /**

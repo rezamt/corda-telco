@@ -1,4 +1,5 @@
 include 'workflows'
 include 'contracts'
-include 'clients'
 include 'services'
+include 'subscriber-client'
+include 'serviceprovider-client'

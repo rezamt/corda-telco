@@ -1,16 +1,11 @@
 package com.telco.contracts
 
-import net.corda.core.contracts.CommandData
-import net.corda.core.contracts.Contract
-import net.corda.core.contracts.requireSingleCommand
-import net.corda.core.contracts.requireThat
 import net.corda.core.identity.Party
 import net.corda.core.transactions.LedgerTransaction
 
-import java.time.LocalDate
+import net.corda.core.contracts.*
 
-import com.telco.states.InvoiceState
-
+@LegalProseReference("https://nowhere/nolegal")
 class SubscriptionContract : Contract {
 
 
@@ -21,8 +16,11 @@ class SubscriptionContract : Contract {
 
     // Commands signed by oracles must contain the facts the oracle is attesting to.
     interface Commands : CommandData {
-        class Subscribe(val customer: Party, val serviceProvider: Party) : Commands
-        class UnSubscribe(val customer: Party, val serviceProvider: Party) : Commands
+        class Subscribe(val subscriber: Party, val serviceProvider: Party) : Commands
+        class UnSubscribe(val subscriber: Party, val serviceProvider: Party) : Commands
+        class Approved(val subscriber: Party, val serviceProvider: Party, val accountStatus: String, val serviceStatus: String) : Commands
+        class Connected(val subscriber: Party, val serviceProvider: Party, val accountStatus: String, val serviceStatus: String) : Commands
+        class Activated(val subscriber: Party, val serviceProvider: Party, val accountStatus: String, val serviceStatus: String) : Commands
     }
 
     /**
@@ -37,6 +35,11 @@ class SubscriptionContract : Contract {
                 }
             }
             is Commands.UnSubscribe -> {
+                requireThat {
+                }
+            }
+
+            is Commands.Approved -> {
                 requireThat {
                 }
             }

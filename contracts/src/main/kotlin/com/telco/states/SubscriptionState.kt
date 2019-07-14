@@ -26,18 +26,25 @@ data class SubscriptionState(
         val serviceLevel: String,
 
         val contractID: String,
-        val billingAccountID: String,
+        val billingAccountID: String,           // Will be setup by charging
 
         val subscriptionStartDate: LocalDate,
         val subscriptionEndDate: LocalDate,
 
-        val serviceProvider: Party, // Telstra, Optus, NBN = CName
-        val subscriber: Party,      // Subscriber@ Telstra, Optus, NBN [can be an individual or wholesaler]
+
+        val serviceStatus: String,
+        val accountStatus: String,
+
+        val billingCycle: String,
+        val billDeliveryMethod: String,
+
+        val serviceProvider: Party,             // Telstra, Optus, NBN = CName
+        val subscriber: Party,                  // Subscriber@ Telstra, Optus, NBN [can be an individual or wholesaler]
 
         override val linearId: UniqueIdentifier = UniqueIdentifier()) : LinearState, QueryableState {
 
 
-    override val participants: List<AbstractParty> get() = listOf(serviceProvider, subscriber)
+    override val participants: List<Party> get() = listOf(serviceProvider, subscriber)
 
     override fun generateMappedObject(schema: MappedSchema): PersistentState {
         return when (schema) {
@@ -56,6 +63,12 @@ data class SubscriptionState(
 
                     this.subscriptionStartDate,
                     this.subscriptionEndDate,
+
+                    this.serviceStatus,
+                    this.accountStatus,
+
+                    this.billingCycle,
+                    this.billDeliveryMethod,
 
                     this.linearId.id
             )

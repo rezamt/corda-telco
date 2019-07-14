@@ -6,9 +6,8 @@ import net.corda.core.contracts.requireThat
 import net.corda.core.flows.*
 import net.corda.core.transactions.SignedTransaction
 
-@InitiatingFlow
-@InitiatedBy(ServiceProviderFlow::class)
-class ServiceProviderFlowResponder(val counterpartySession: FlowSession) : FlowLogic<SignedTransaction>() {
+@InitiatedBy(ChargingFlow::class)
+class ChargingFlowResponder(val counterpartySession: FlowSession) : FlowLogic<SignedTransaction>() {
 
     @Suspendable
     override fun call(): SignedTransaction {

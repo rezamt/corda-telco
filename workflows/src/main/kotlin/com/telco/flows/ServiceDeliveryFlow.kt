@@ -18,7 +18,7 @@ import java.util.*
 // *********
 @InitiatingFlow
 @StartableByRPC
-class ServiceProviderFlow(private val subscriptionId: UUID) : FlowLogic<SignedTransaction>() {
+class ServiceDeliveryFlow(private val subscriptionId: UUID) : FlowLogic<SignedTransaction>() {
 
     companion object {
         object GENERATING_TRANSACTION : ProgressTracker.Step("Updating Subscriber Service Status")
@@ -62,11 +62,11 @@ class ServiceProviderFlow(private val subscriptionId: UUID) : FlowLogic<SignedTr
         val commandSigners = subscription.participants.map { it.owningKey }
 
         // Generate an unsigned transaction.
-        val txCommand = Command(SubscriptionContract.Commands.Approved(subscription.subscriber, ourIdentity, subscription.accountStatus, subscription.serviceStatus), commandSigners)
+        val txCommand = Command(SubscriptionContract.Commands.Connected(subscription.subscriber, ourIdentity, subscription.accountStatus, subscription.serviceStatus), commandSigners)
 
         val txBuilder = TransactionBuilder(notary)
                 .addInputState(subscriptionStateAndRef)
-                .addOutputState(subscription.copy(serviceStatus = "Approved"), SubscriptionContract.ID)
+                .addOutputState(subscription.copy(serviceStatus = "Connected"), SubscriptionContract.ID)
                 .addCommand(txCommand)
 
         // Stage 2.

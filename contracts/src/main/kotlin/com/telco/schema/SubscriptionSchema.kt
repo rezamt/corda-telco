@@ -30,7 +30,7 @@ object SubscriptionSchemaV1 : MappedSchema(
     class PersistentSusbcription(
 
             // Customer Registration Portal ID
-            @Column(name = "customerID")
+            @Column(name = "customer_ID")
             val customerID: String,
 
             // Contacts
@@ -41,29 +41,40 @@ object SubscriptionSchemaV1 : MappedSchema(
             @Column(name = "email")
             val email: String,
 
-            @Column(name = "serviceProvider")
+            @Column(name = "service_Provider")
             val serviceProvider: String,
 
             // Service Types: WIRELESS, ADSL, FIBER_OPTIC, DSL, SATELLITE, etc
             // @todo: may be we better use Enum here
-            @Column(name = "serviceType")
+            @Column(name = "service_Type")
             val serviceType: String,
             // Service Level Agreement: 10Mbps, 50Mbps, 100Mbps, 1000Mbps, UNLIMITED_SPEED
-            @Column(name = "serviceLevel")
+            @Column(name = "service_Level")
             val serviceLevel: String,
 
             // Customer Contract ID
-            @Column(name = "contractID")
+            @Column(name = "contract_ID")
             val contractID: String,
             // Customer Billing Account ID (@todo: customer in the future might have more than one account
-            @Column(name = "billingAccountID")
+            @Column(name = "billing_Account_ID")
             val billingAccountID: String,
 
             // Subscription start and end dates
-            @Column(name = "subscriptionStartDate")
+            @Column(name = "subscription_StartDate")
             val subscriptionStartDate: LocalDate,
-            @Column(name = "subscriptionEndDate")
+            @Column(name = "subscription_EndDate")
             val subscriptionEndDate: LocalDate,
+
+            @Column(name = "service_Status")
+            val serviceStatus: String,
+            @Column(name = "account_Status")
+            val accountStatus: String,
+
+            @Column(name = "billing_Cycle")
+            val billingCycle: String,
+            @Column(name = "bill_Delivery_Method")
+            val billDeliveryMethod: String,
+
 
             @Column(name = "linear_id")
             var linearId: UUID
@@ -72,7 +83,7 @@ object SubscriptionSchemaV1 : MappedSchema(
     ) : PersistentState() {
 
         // Default constructor required by hibernate.
-        constructor() : this("", "", "", "", "", "", "", "", "", LocalDate.MIN, LocalDate.MIN, UUID.randomUUID())
+        constructor() : this("", "", "", "", "", "", "", "", "", LocalDate.MIN, LocalDate.MIN, "", "", "", "", UUID.randomUUID())
     }
 
 
