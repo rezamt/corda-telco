@@ -3,9 +3,6 @@ package com.telco.contracts
 import net.corda.core.identity.Party
 import net.corda.core.transactions.LedgerTransaction
 
-import java.time.LocalDate
-
-import com.telco.states.InvoiceState
 import net.corda.core.contracts.*
 
 @LegalProseReference("https://nowhere/nolegal")
@@ -22,6 +19,8 @@ class SubscriptionContract : Contract {
         class Subscribe(val subscriber: Party, val serviceProvider: Party) : Commands
         class UnSubscribe(val subscriber: Party, val serviceProvider: Party) : Commands
         class Approved(val subscriber: Party, val serviceProvider: Party, val accountStatus: String, val serviceStatus: String) : Commands
+        class Connected(val subscriber: Party, val serviceProvider: Party, val accountStatus: String, val serviceStatus: String) : Commands
+        class Activated(val subscriber: Party, val serviceProvider: Party, val accountStatus: String, val serviceStatus: String) : Commands
     }
 
     /**

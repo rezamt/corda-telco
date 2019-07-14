@@ -9,17 +9,20 @@ import com.telco.states.InvoiceState
 import net.corda.core.contracts.*
 
 /**
- * A implementation of a basic smart contract in Corda.
- *
- * This contract enforces rules regarding the creation of a valid [InvoiceState], which in turn encapsulates an [InvoiceState].
+ *  This contract enforces rules regarding the creation of a valid [InvoiceState], which in turn encapsulates an [InvoiceState].
  *
  * For a new [InvoiceState] to be issued onto the ledger, a transaction is required which takes:
- * - Zero input states.
- * - One output state: the new [InvoiceState].
- * - An Create() command with the public keys of both the lender and the borrower.
+ *
+ * An IssueBill() command with the public keys of both the subscriber and the service provider.
+ * Zero input states.
+ * One output state: the new [InvoiceState].
+ *
+ *
  *
  * All contracts must sub-class the [Contract] interface.
  */
+
+
 @LegalProseReference("https://nowhere/nolegal")
 class BillingContract : Contract {
 

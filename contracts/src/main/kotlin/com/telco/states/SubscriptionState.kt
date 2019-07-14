@@ -26,7 +26,7 @@ data class SubscriptionState(
         val serviceLevel: String,
 
         val contractID: String,
-        val billingAccountID: String,
+        val billingAccountID: String,           // Will be setup by charging
 
         val subscriptionStartDate: LocalDate,
         val subscriptionEndDate: LocalDate,
@@ -38,8 +38,8 @@ data class SubscriptionState(
         val billingCycle: String,
         val billDeliveryMethod: String,
 
-        val serviceProvider: Party, // Telstra, Optus, NBN = CName
-        val subscriber: Party,      // Subscriber@ Telstra, Optus, NBN [can be an individual or wholesaler]
+        val serviceProvider: Party,             // Telstra, Optus, NBN = CName
+        val subscriber: Party,                  // Subscriber@ Telstra, Optus, NBN [can be an individual or wholesaler]
 
         override val linearId: UniqueIdentifier = UniqueIdentifier()) : LinearState, QueryableState {
 
