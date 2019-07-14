@@ -104,7 +104,7 @@ class SubscriptionFlow(
                 serviceType,
                 serviceLevel,
                 contractID,
-                "NA",
+                "",
                 subscriptionStartDate,
                 subscriptionEndDate,
                 "PendingApproval",

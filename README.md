@@ -1,6 +1,4 @@
-# Telecommunication On Corda
-
-
+# Telecommunication On Corda (Telco-Chains)
 
 ![Highlevel Design](docs/sc01.png)
 
@@ -39,3 +37,12 @@ cordacadevpass
 java -Dcapsule.jvm.args="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005" -jar corda.jar
 
 ```
+
+# Running flows From Command-line:
+```bash
+
+
+start SubscriptionFlow customerID: "1234567788", firstName: "Reza", lastName: "MT", email: "reza@gmail.com", serviceType: "ADSL", serviceLevel: "10Mbps", contractID: "34534535345", serviceProvider: TurkCell, startDate:  "Thu Jul 11 2019", endDate:  "Thu Jul 11 2019", billingCycle: Monthly, billDeliveryMethod: Email
+
+
+```  
